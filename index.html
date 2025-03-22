@@ -56,9 +56,14 @@
         }
 
         .estrella::before {
-            content: "🎰";
-            font-size: 40px;
-            position: absolute;
+    content: ""; /* Se elimina el ícono de texto */
+    width: 40px; /* Tamaño del icono */
+    height: 40px;
+    position: absolute;
+    background-image: url('https://raw.githubusercontent.com/enjoyluck/Raspadita.online/main/892721.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
         }
 
         .estrella.revealed::before {
