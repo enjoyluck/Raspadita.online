@@ -55,7 +55,7 @@
             animation: titilar 1s infinite alternate;
         }
 
-        .estrella::before {
+     .estrella::before {
     content: ""; /* Se elimina el ícono de texto */
     width: 40px; /* Tamaño del icono */
     height: 40px;
@@ -63,7 +63,14 @@
     background-image: url('https://raw.githubusercontent.com/enjoyluck/Raspadita.online/main/892721.png');
     background-size: cover;
     background-repeat: no-repeat;
-        }
+}
+
+/* Cuando la estrella tiene la clase .revealed, el icono desaparece */
+.estrella.revealed::before {
+    content: none;
+    background-image: none;
+}
+        
     
    .estrella.revealed::before {
             content: "";
