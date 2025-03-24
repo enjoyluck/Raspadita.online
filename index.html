@@ -107,7 +107,7 @@
             margin-top: 50px;
         }
 
-        /* ✨ **ESTILO PARA "SÁBADO" (Texto Color agregado)** ✨ */
+        /* ✨ **ESTILO PARA "DOMINGO" (Texto Color agregado)** ✨ */
         .sabado {
             text-align: center;
             font-size: 40px; /* Tamaño grande */
@@ -118,14 +118,14 @@
         }
 
         /* Efecto titilante y brillante */
-        @keyframes titilar-sabado {
+        @keyframes titilar-Domingo {
             0% { opacity: 1; text-shadow: 0 0 10px gold, 0 0 20px yellow; }
             50% { opacity: 0.6; text-shadow: 0 0 20px yellow, 0 0 30px gold; }
             100% { opacity: 1; text-shadow: 0 0 10px yellow, 0 0 20px gold; }
         }
 
         .brillante {
-            animation: titilar-sabado 1s infinite alternate; /* Hace que el texto brille y titile */
+            animation: titilar-Domingo 1s infinite alternate; /* Hace que el texto brille y titile */
         }
     
         /* ✨ Estilo para el título brillante (igual que "SÁBADO") ✨ */
@@ -156,7 +156,7 @@
     </div>
 
     <script>
-        let gameVersion = "v6"; // Cambia este valor para resetear manualmente
+        let gameVersion = "v7"; // Cambia este valor para resetear manualmente
         let prizes = ["200", "350", "500", "650", "800", "1000"];
         prizes = prizes.sort(() => Math.random() - 0.5);
         let firstRevealed = null;
@@ -167,7 +167,7 @@
         let lastGameVersion = localStorage.getItem("gameVersion");
         let storedPrizes = JSON.parse(localStorage.getItem("storedPrizes"));
         let currentTime = new Date().getTime();
-        let tenMinutes = 10 * 60 * 1000;
+        let tenMinutes = 60 * 60 * 1000;
 
         if (lastGameVersion === gameVersion && lastPlayTime && currentTime - lastPlayTime < tenMinutes) {
             document.body.innerHTML = "<h1 class='bloqueado'> Ya has jugado Gracias 🙇</h1>";
