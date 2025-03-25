@@ -21,14 +21,6 @@
             margin-top: 50px;
         }
 
-        h1 {
-            font-size: 24px;
-            text-shadow: 2px 2px 5px red;
-            display: inline-block;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
         .scratch-card {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -51,23 +43,16 @@
             cursor: pointer;
             box-shadow: 0px 0px 10px gold;
             position: relative;
-            animation: titilar 1s infinite alternate;
         }
 
         .estrella::before {
-            content: "🎰"; 
+            content: "🎰";  
             font-size: 40px;
             position: absolute;
         }
 
         .estrella.revealed::before {
             content: none;
-            background-image: none;
-        }
-
-        @keyframes titilar {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.1); opacity: 0.8; }
         }
 
         .revealed {
@@ -79,15 +64,6 @@
             color: white !important;
         }
 
-        p#message {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            display: inline-block;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
         .bloqueado {
             font-size: 28px;
             color: gold;
@@ -95,37 +71,28 @@
             margin-top: 50px;
         }
 
-        .sabado {
-            text-align: center;
-            font-size: 50px;
-            font-weight: bold;
-            color: silver;
-            text-shadow: 2px 2px 10px rgba(255, 215, 0, 1);
-            animation: titilar 1s infinite alternate;
-            position: absolute;
-             top: 60%;
-             left: 27%;
-             transform: translate(-50%, -50%);
- 
-        }
-
-        .titulo-brillante {
-            text-align: center;
-            font-size: 36px;
-            font-weight: bold;
-            color: silver;
-            text-shadow: 0 0 10px yellow, 0 0 20px red, 0 0 30px red;
-            animation: titilar 1s infinite alternate;
-        }
-
-        body {
-            min-height: 100vh;
+        .estrella-ganadora {
+            width: 120px;
+            height: 120px;
+            background-color: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: black;
+            font-weight: bold;
+            box-shadow: 0px 0px 10px gold;
+            margin: 20px auto;
+            position: relative;
         }
 
-        /* Información del creador */
+        .estrella-ganadora::before {
+            content: "🏆";  
+            font-size: 10px;
+            position: 0;
+        }
+
         .creador {
             position: fixed;
             bottom: 10px;
@@ -146,86 +113,75 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="titulo-brillante">Gentileza de tu Cajero de confianza</h1>
-        <div class="scratch-card">
-            <div class="estrella" onclick="revealPrize(this)"></div>
-            <div class="estrella" onclick="revealPrize(this)"></div>
-            <div class="estrella" onclick="revealPrize(this)"></div>
-            <div class="estrella" onclick="revealPrize(this)"></div>
-            <div class="estrella" onclick="revealPrize(this)"></div>
-            <div class="estrella" onclick="revealPrize(this)"></div>
-        </div>
-        <p id="message"></p>
-    </div>
-
     <script>
-        let gameVersion = "V8"; 
+        let gameVersion = "V00"; 
         let prizes = ["200", "300", "400", "10%", "15%", "10%"];
         prizes = prizes.sort(() => Math.random() - 0.5);
-        let firstRevealed = null;
-        let revealedCount = 0;
         let played = false;
 
         let lastPlayTime = localStorage.getItem("lastPlayTime");
         let lastGameVersion = localStorage.getItem("gameVersion");
-        let storedPrizes = JSON.parse(localStorage.getItem("storedPrizes"));
+        let selectedPrize = localStorage.getItem("selectedPrize");
         let currentTime = new Date().getTime();
-        let tenMinutes = 60 * 60 * 1000;
+        let timeLimit = 60 * 60 * 1000;
 
-        if (lastGameVersion === gameVersion && lastPlayTime && currentTime - lastPlayTime < tenMinutes) {
-            document.body.innerHTML = "<h1 class='bloqueado'> Ya has jugado Gracias 🙇</h1>" +
-            "<div class='creador'>" +
-            "By Martin Clerici" +
-            "<a href='https://wa.me/541159045035' target='_blank'>" +
-            "<img src='https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png' alt='WhatsApp Creador' class='whatsapp-icon'>" +
-            "</a>" +
-            "</div>";
-        } 
-        else {
-            document.addEventListener("DOMContentLoaded", () => {
-                let estrellas = document.querySelectorAll(".estrella");
-                if (lastGameVersion === gameVersion && storedPrizes) {
-                    estrellas.forEach((estrella, index) => {
-                        estrella.dataset.prize = storedPrizes[index];
-                    });
-                    document.getElementById("message").textContent = "¡Gracias por jugar!";
-                } else {
-                    estrellas.forEach((estrella, index) => {
-                        estrella.dataset.prize = prizes[index];
-                    });
-                }
-            });
+        if (lastGameVersion === gameVersion && lastPlayTime && currentTime - lastPlayTime < timeLimit) {
+            document.body.innerHTML = `
+                <h1 class='bloqueado'>Ya has jugado. Gracias 🙇</h1>
+                <div class='creador'>
+                    By Martin Clerici
+                    <a href='https://wa.me/541159045035' target='_blank'>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png' alt='WhatsApp Creador' class='whatsapp-icon'>
+                    </a>
+                </div>
+            `;
 
-            function revealPrize(element) {
-                if (played) return; 
+            if (selectedPrize) {
+                document.body.innerHTML += `
+                    <div>
+                        <h2>Tu premio es:</h2>
+                        <div class="estrella-ganadora">${selectedPrize}</div>
+                    </div>
+                `;
+            }
+        } else {
+            document.body.innerHTML = `
+                <div class="container">
+          <p class="sabado brillante">KONABET</p>
+           <h1 class="titulo-brillante">Gentileza de tu Cajero de confianza</h1>
+                    <div class="scratch-card">
+                        <div class="estrella" onclick="revealPrize(this, 0)"></div>
+                        <div class="estrella" onclick="revealPrize(this, 1)"></div>
+                        <div class="estrella" onclick="revealPrize(this, 2)"></div>
+                        <div class="estrella" onclick="revealPrize(this, 3)"></div>
+                        <div class="estrella" onclick="revealPrize(this, 4)"></div>
+                        <div class="estrella" onclick="revealPrize(this, 5)"></div>
+                    </div>
+                </div>
+                <div class="creador">
+                    By Martin Clerici
+                    <a href="https://wa.me/541159045035" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp Creador" class="whatsapp-icon">
+                    </a>
+                </div>
+            `;
 
-                // Develar el valor de todas las estrellas
-                document.querySelectorAll(".estrella").forEach((estrella) => {
-                    estrella.textContent = estrella.dataset.prize;
+            function revealPrize(element, index) {
+                if (played) return;
+
+                document.querySelectorAll(".estrella").forEach((estrella, i) => {
+                    estrella.textContent = prizes[i];
                     estrella.classList.add("revealed");
                 });
 
-                // Hacer celeste la estrella seleccionada
                 element.classList.add("celeste");
-
                 played = true;
+
                 localStorage.setItem("gameVersion", gameVersion);
                 localStorage.setItem("lastPlayTime", currentTime);
-                localStorage.setItem("storedPrizes", JSON.stringify(prizes));
-
-                document.getElementById("message").textContent = "¡Gracias por jugar!";
+                localStorage.setItem("selectedPrize", prizes[index]);
             }
         }
     </script>
-
-    <p class="sabado brillante">KONABET</p>
-
-    <div class="creador">
-        By Martin Clerici
-        <a href="https://wa.me/541159045035" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png" alt="WhatsApp Creador" class="whatsapp-icon">
-        </a>
-    </div>
 </body>
-</html> 
+</html>
