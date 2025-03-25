@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE >
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -14,14 +14,14 @@
             background-repeat: no-repeat;
             height: 100vh;
             margin: 0;
-            color: silver ;
+            color: silver;
         }
 
         .container {
             margin-top: 50px;
         }
 
-        h1 {  v
+        h1 {
             font-size: 24px;
             text-shadow: 2px 2px 5px red;
             background: none;
@@ -55,22 +55,15 @@
             animation: titilar 1s infinite alternate;
         }
 
-           .estrella::before {
-    content: "🎰"; /* Emoji de WhatsApp */
-    font-size: 40px;
-    position: absolute;
+        .estrella::before {
+            content: "🎰"; /* Emoji de WhatsApp */
+            font-size: 40px;
+            position: absolute;
+        }
 
-}
-
-/* Cuando la estrella tiene la clase .revealed, el icono desaparece */
-.estrella.revealed::before {
-    content: none;
-    background-image: none;
-}
-
-
-   .estrella.revealed::before {
-            content: "";
+        .estrella.revealed::before {
+            content: none;
+            background-image: none;
         }
 
         @keyframes titilar {
@@ -104,17 +97,15 @@
             margin-top: 50px;
         }
 
-        /* ✨ **ESTILO PARA "XXC" (Texto Color agregado)** ✨ */
         .sabado {
             text-align: center;
-            font-size: 40px; /* Tamaño grande */
+            font-size: 40px;
             font-family: Arial, sans-serif;
-            font-weight: silver; /* Texto en negrita */
-            color:silver; /* 🔸 Color x 🔸 */
-            text-shadow: 2px 2px 10px rgba(255, 215, 0, 1); /* Brillo */
+            font-weight: silver;
+            color: silver;
+            text-shadow: 2px 2px 10px rgba(255, 215, 0, 1);
         }
 
-        /* Efecto titilante y brillante */
         @keyframes titilar-Domingo {
             0% { opacity: 1; text-shadow: 0 0 10px gold, 0 0 20px yellow; }
             50% { opacity: 0.6; text-shadow: 0 0 20px yellow, 0 0 30px gold; }
@@ -122,21 +113,46 @@
         }
 
         .brillante {
-            animation: titilar-Domingo 1s infinite alternate; /* Hace que el texto brille y titile */
+            animation: titilar-Domingo 1s infinite alternate;
         }
 
-        /* ✨ Estilo para el título brillante (igual que "SÁBADO") ✨ */
         .titulo-brillante {
             text-align: center;
-            font-size: 36px; /* Un poco más pequeño que "SÁBADO" */
+            font-size: 36px;
             font-family: Arial, sans-serif;
-            font-weight: bold; /* Texto en negrita */
-            color: silver; /* ✨ Color x ✨ */
-            text-shadow: 0 0 10px yellow, 0 0 20px red, 0 0 30px red; /* Borde amarillo brillante */
-            animation: titilar 1s infinite alternate; /* Hace que brille y titile */
+            font-weight: bold;
+            color: silver;
+            text-shadow: 0 0 10px yellow, 0 0 20px red, 0 0 30px red;
+            animation: titilar 1s infinite alternate;
         }
-        </style>
 
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Información del creador */
+        .creador {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: transparent;
+            color: silver;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .creador img {
+            width: 20px; /* Más pequeño */
+            height: 20px;
+            margin-left: 5px;
+            filter: grayscale(200%) brightness(1.2) contrast(1.2);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -152,8 +168,9 @@
         <p id="message"></p>
     </div>
 
+    <!-- Aquí se muestra el ícono de WhatsApp cuando ya has jugado -->
     <script>
-        let gameVersion = "A9"; // Cambia este valor para resetear manualmente
+        let gameVersion = "A6"; 
         let prizes = ["200", "300", "400", "10%", "15%", "10%"];
         prizes = prizes.sort(() => Math.random() - 0.5);
         let firstRevealed = null;
@@ -167,7 +184,13 @@
         let tenMinutes = 60 * 60 * 1000;
 
         if (lastGameVersion === gameVersion && lastPlayTime && currentTime - lastPlayTime < tenMinutes) {
-            document.body.innerHTML = "<h1 class='bloqueado'> Ya has jugado Gracias 🙇</h1>";
+            document.body.innerHTML = "<h1 class='bloqueado'> Ya has jugado Gracias 🙇</h1>" +
+            "<div class='creador'>" +
+            "By Martin Clerici" +
+            "<a href='https://wa.me/541159045035' target='_blank'>" +
+            "<img src='https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png' alt='WhatsApp Creador' class='whatsapp-icon'>" +
+            "</a>" +
+            "</div>";
         } 
         else {
             document.addEventListener("DOMContentLoaded", () => {
@@ -217,8 +240,6 @@
         }
     </script>
 
-    <!-- 🔥 **Texto agregado para SÁBADO con efecto brillante** 🔥 -->
     <p class="sabado brillante">KONABET</p>
-
 </body>
-</html>v
+</html>
