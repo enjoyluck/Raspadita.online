@@ -102,6 +102,11 @@
             color: silver;
             text-shadow: 2px 2px 10px rgba(255, 215, 0, 1);
             animation: titilar 1s infinite alternate;
+            position: absolute;
+             top: 60%;
+             left: 27%;
+             transform: translate(-50%, -50%);
+
         }
 
         .titulo-brillante {
@@ -223,4 +228,4 @@
         </a>
     </div>
 </body>
-</html>
+</html> 
