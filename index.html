@@ -38,7 +38,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             justify-content: center;
-            margin-top: -29px;
+            margin-top: 140px;
         }
         /* CONFIGURACION ANIMACION ESTRELLA*/
           .estrella {
@@ -127,7 +127,7 @@
 
             /*color: white;
             text-shadow: 0 0 10px yellow, 0 0 20px red, 0 0 30px red;
-           /* animation: titilar 1s infinite alternate;*/
+            animation: titilar 1s infinite alternate;*/
         }
 
         body {
@@ -174,7 +174,7 @@
     /*position: absolute; /* Fija la posición respecto a la estrella */
     top: 50%; /* Lo mueve hacia abajo */
     left: 50%; /* Centra horizontalmente */
-   /* transform: translate( -50%, 0); /* Ajusta el centrado exacto */*/
+   /* transform: translate( -50%, 0); /* Ajusta el centrado exacto */
 }
         
 
@@ -188,8 +188,8 @@
 </head>
 <body>
   <script>
-        let gameVersion = "159"; 
-        let prizes = ["200", "300", "400", "10%", "15%", "10%"];
+        let gameVersion = "9"; 
+        let prizes = ["200", "300", "450", "10%", "15%", "10%"];
         prizes = prizes.sort(() => Math.random() - 0.5);
         let played = false;
         let lastPlayTime = localStorage.getItem("lastPlayTime");
@@ -212,7 +212,7 @@
            if (selectedPrize) {
                 document.body.innerHTML += `
                      <div>
-                       <h2>Konabet Casino</h2>
+                      <h2>Konabet Casino</h2>
                         <div class="estrella-ganadora">${selectedPrize}</div>
                     </div> 
                 `;
