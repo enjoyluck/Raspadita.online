@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-image: url('https://raw.githubusercontent.com/enjoyluck/Raspadita.online/refs/heads/main/it.jpg');
+            background-image: url('https://raw.githubusercontent.com/enjoyluck/Raspadita.online/refs/heads/main/pachino.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -59,7 +59,7 @@
         }
 
         .estrella::before {
-           content: "🎈";
+            content: "💰";
             font-size: 40px;
             position: absolute;
             animation: titilar 1s infinite alternate;
@@ -94,12 +94,12 @@
             padding: 10px;
             border-radius: 10px;
         }
-
+        /*FELICITACIONES*/
         .bloqueado {
             font-size: 28px;
-            color: white ;
-            text-shadow: 2px 2px 5px black;
-            margin-top: 50px;
+            color: Black ;
+            text-shadow: 2px 5px 15px white;
+            margin-top: 400px;
         }
 
         .sabado {
@@ -168,13 +168,13 @@
 
         }
 
-        .estrella-ganadora::before {
-   content: "🎈";  
-    font-size: 25px; /* Ajusta el tamaño del ícono */
-    position: absolute; /* Fija la posición respecto a la estrella */
-    top: 15%; /* Lo mueve hacia abajo */
+     .estrella-ganadora::before {
+    content: "💰";
+    font-size: 15px; /* Ajusta el tamaño del ícono */
+    /*position: absolute; /* Fija la posición respecto a la estrella */
+    top: 50%; /* Lo mueve hacia abajo */
     left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, 0); /* Ajusta el centrado exacto */
+   /* transform: translate( -50%, 0); /* Ajusta el centrado exacto */
 }
         
 
@@ -188,7 +188,7 @@
 </head>
 <body>
   <script>
-        let gameVersion = "V0"; 
+        let gameVersion = "V9"; 
         let prizes = ["200", "300", "450", "10%", "15%", "10%"];
         prizes = prizes.sort(() => Math.random() - 0.5);
         let played = false;
